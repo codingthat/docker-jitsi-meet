@@ -32,7 +32,7 @@ follow these steps:
 
 * Download and extract the [latest release]
   * Alternatively, to test the latest changes clone the repository: `git clone https://github.com/jitsi/docker-jitsi-meet && cd docker-jitsi-meet`
-* Create a ``.env`` file by copying and adjusting ``env.example``
+* Create a ``.env`` file by copying and adjusting ``env.example`` --- please see the warning about Let's Encrypt rate limits below before enabling that section
   * `cp env.example .env`
 * Set strong passwords in the security section options of ``.env`` file by running the following bash script
   * `./gen-passwords.sh`
@@ -150,7 +150,11 @@ See below for instructions on how to obtain a proper certificate with Let's Encr
 
 If you plan on exposing this container setup to the outside traffic directly and
 want a proper TLS certificate, you are in luck because Let's Encrypt support is
-built right in. Here are the required options:
+built right in.
+
+Please note that Let's Encrypt has [rate limits](https://letsencrypt.org/docs/rate-limits/) that are easy to hit if you're debugging and reloading your configuration even a handful of times. So it makes sense to make enable this section independent of other changes, and also to find out how to reuse a generated certificate so you don't end up making multiple requests to Let's Encrypt.
+
+Here are the required options:
 
 Variable | Description | Example
 --- | --- | ---
